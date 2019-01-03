@@ -1,0 +1,51 @@
+FROM php:5.6-apache
+
+RUN apt-get -y update
+RUN apt-get upgrade -y
+
+# Install important libraries
+RUN apt-get -y install --fix-missing apt-utils build-essential curl zip libsqlite3-dev libsqlite3-0 mysql-client libbz2-dev zlib1g-dev libicu-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libmcrypt-dev wget msmtp ca-certificates libmemcached-dev
+
+# Install xdebug and APCu
+RUN pecl install xdebug-2.5.5 \
+	&& pecl install apcu-4.0.11 \ 
+	&& pecl install memcached-2.2.0 \
+	&& docker-php-ext-enable xdebug apcu memcached
+
+# Other PHP7 Extensions
+RUN docker-php-ext-install pdo_mysql \
+	&& docker-php-ext-install pdo_sqlite \
+	&& docker-php-ext-install mysqli \
+	&& docker-php-ext-install pdo \
+	&& docker-php-ext-install mysql \
+	&& docker-php-ext-configure opcache --enable-opcache \
+	&& docker-php-ext-install opcache \
+	&& docker-php-ext-install bz2 \
+	&& docker-php-ext-install tokenizer \
+	&& docker-php-ext-install json \
+	&& docker-php-ext-install zip \
+	&& docker-php-ext-install -j$(nproc) intl \
+	&& docker-php-ext-install mbstring \
+	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-install -j$(nproc) gd \
+	&& docker-php-ext-install mcrypt
+
+# Enable apache modules
+RUN a2enmod rewrite headers
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#create  msmtp logdir
+RUN mkdir -p /var/log/msmtp/ && chmod 777 /var/log/msmtp/
+
+#php log dir
+RUN mkdir -p /var/log/php/ && chmod 777 /var/log/php/
+
+RUN wget -S --header="accept-encoding: gzip" -O-  "https://browscap.org/stream?q=Full_PHP_BrowsCapINI" | gunzip > /browscap.ini
+
+COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
+RUN chmod +x /usr/local/bin/custom-start.sh
+
+ENTRYPOINT ["custom-start.sh"]
+CMD ["apache2-foreground"]

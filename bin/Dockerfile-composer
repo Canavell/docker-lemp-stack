@@ -1,0 +1,10 @@
+FROM php:7.3-cli
+
+RUN apt-get -y update --fix-missing
+RUN apt-get upgrade -y
+
+# Install important libraries
+RUN apt-get -y install --fix-missing curl git
+
+#install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

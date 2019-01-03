@@ -1,0 +1,17 @@
+/data/*
+/www/*
+*.log
+!.gitignore
+!.gitkeep
+
+/bin/config/apache_vhosts/*.conf
+!/bin/config/apache_vhosts/*.template
+
+/bin/config/apache_ports/*.conf
+!/bin/config/apache_ports/*.template
+
+/bin/config/msmtp/*
+!/bin/config/msmtp/*.template
+
+.env
+!.env.template

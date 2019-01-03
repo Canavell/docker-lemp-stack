@@ -1,0 +1,24 @@
+account gmail
+host smtp.gmail.com
+port 587
+from your_account@gmail.com
+auth on
+user your_account@gmail.com
+password your_password
+tls on
+tls_starttls on
+tls_certcheck off
+keepbcc on
+
+
+account yandex
+host smtp.yandex.ru
+port 587
+from your_accont@yandex.ru
+keepbcc on
+auth on
+user your_account@yandex.ru
+password your_password
+tls on
+tls_starttls on
+tls_certcheck off

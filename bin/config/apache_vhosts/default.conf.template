@@ -1,0 +1,9 @@
+<VirtualHost *:8080 *:80>
+    ServerName example.localhost
+    DocumentRoot /var/www/example/
+	<Directory /var/www/example/>
+		DirectoryIndex index.html index.php
+		Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+	</Directory>
+</VirtualHost>
