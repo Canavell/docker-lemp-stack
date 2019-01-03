@@ -12,6 +12,6 @@ Instructions for use.
 11. In the /etc/hosts file, enter the required hosts, for example "127.0.0.1 example.localhost"
 12. In the www folder, create a folder called "example"
 13. Finished, open one of the options in the browser:
-	http://example.localhost: 7777 / (will open with php7.1, directly via Apache)
-	http://example.localhost: 5555 / (opens with php5.6, directly through Apache)
+	http://example.localhost:7777/ (will open with php7.1, directly via Apache)
+	http://example.localhost:5555/ (opens with php5.6, directly through Apache)
 	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
