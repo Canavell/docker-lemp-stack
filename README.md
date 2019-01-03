@@ -15,3 +15,4 @@ Instructions for use.
 	http://example.localhost:7777/ (will open with php7.1, directly via Apache)
 	http://example.localhost:5555/ (opens with php5.6, directly through Apache)
 	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
+14. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
