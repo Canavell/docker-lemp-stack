@@ -5,27 +5,37 @@
 export REMOTE_HOST_IP="$(echo $(hostname -I) | cut -d ' ' -f 1)"
 export DEV_PATH="$(pwd)"
 
+
 sudo chmod -R gou+rwx .
 docker-compose down
 docker-compose up -d --build
 
+
 #mysql installing
-rm mysql-setup-log.txt 
+mysqlLogFile="mysql-setup-log.txt"
+rm $mysqlLogFile
 docker logs mysql >& mysql-setup-log.txt 
-while [ -z $(grep "mysqld: ready for connections" mysql-setup-log.txt) ]
+while [ -z $(grep "mysqld: ready for connections" $mysqlLogFile) ]
 do
     sleep 1
-    docker logs mysql >& mysql-setup-log.txt 
+    docker logs mysql >& $mysqlLogFile
     echo "We are waiting for mysql to be initialized."
 done
-rm mysql-setup-log.txt 
-docker-compose restart
+if grep -q "Initializing database" "$mysqlLogFile"; then
+  echo "We need to restart containers."
+  docker-compose restart
+fi
+rm $mysqlLogFile
+
+
 
 #install local scripts
 for filename in ./local_tools/*; do
     yes | sudo cp -rf $filename /usr/local/bin/
     sudo chmod +x /usr/local/bin/$(basename "$filename")
 done
+
+
 
 #install node js and npm
 nodejs=$(dpkg-query -W --showformat='${Status}\n' nodejs|grep "install ok installed")
