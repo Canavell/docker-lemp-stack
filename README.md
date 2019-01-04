@@ -6,6 +6,7 @@ Stack includes:
 5. Composer
 6. MSMTP (mailing system)
 7. Node.js and NPM
+8. Xdebug
 
 Instructions for use.
 1. Rename the ".env.template" file to ".env"
