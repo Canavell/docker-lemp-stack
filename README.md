@@ -1,3 +1,11 @@
+Stack includes: 
+1. PHP5.6
+2. PHP7.1
+3. Nginx
+4. MySQL
+5. Composer
+6. MSMTP (mailing system)
+
 Instructions for use.
 1. Rename the ".env.template" file to ".env"
 2. Set your password for MySQL after the "=" sign in the ".env" file
