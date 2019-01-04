@@ -12,20 +12,15 @@ docker-compose up -d --build
 
 
 #mysql installing
-mysqlLogFile="mysql-setup-log.txt"
-rm $mysqlLogFile
-docker logs mysql >& mysql-setup-log.txt 
-while [ -z $(grep "mysqld: ready for connections" $mysqlLogFile) ]
+while [ -z $(docker logs mysql 2>&1 | grep "mysqld: ready for connections") ]
 do
     sleep 1
-    docker logs mysql >& $mysqlLogFile
     echo "We are waiting for mysql to be initialized."
 done
-if grep -q "Initializing database" "$mysqlLogFile"; then
+if docker logs mysql 2>&1 | grep -Fxq "Initializing database"; then
   echo "We need to restart containers."
   docker-compose restart
 fi
-rm $mysqlLogFile
 
 
 
@@ -46,3 +41,4 @@ if [ "" == "$npm" -o "" == "$nodejs" ]; then
   sudo apt-get install -y nodejs
   sudo apt-get install -y npm
 fi
+echo "Done"
