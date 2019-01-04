@@ -15,7 +15,7 @@ docker-compose up -d --build
 while [ -z $(docker logs mysql 2>&1 | grep "mysqld: ready for connections") ]
 do
     sleep 1
-    echo "We are waiting for mysql to be initialized."
+    echo "We are waiting for mysql to be ready."
 done
 if docker logs mysql 2>&1 | grep -Fxq "Initializing database"; then
   echo "We need to restart containers."
@@ -32,7 +32,7 @@ done
 
 
 
-#install node js and npm
+#installing node js and npm
 nodejs=$(dpkg-query -W --showformat='${Status}\n' nodejs|grep "install ok installed")
 npm=$(dpkg-query -W --showformat='${Status}\n' npm|grep "install ok installed")
 if [ "" == "$npm" -o "" == "$nodejs" ]; then
