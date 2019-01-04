@@ -8,6 +8,8 @@ Stack includes:
 7. Node.js and NPM
 8. Xdebug
 
+Also stack correctly works with PhpStorm out of the box.
+
 Instructions for use.
 1. Rename the ".env.template" file to ".env"
 2. Set your password for MySQL after the "=" sign in the ".env" file
@@ -26,3 +28,4 @@ Instructions for use.
 	http://example.localhost:5555/ (opens with php5.6, directly through Apache)
 	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
 14. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
+15. If you are using PhpStorm, then you should create servers with name "myapp" in PhpStorm debug configurtaion. Also you need add path mapping in server configuration to "/var/www/example-project"
