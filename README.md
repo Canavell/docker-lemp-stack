@@ -5,6 +5,7 @@ Stack includes:
 4. MySQL
 5. Composer
 6. MSMTP (mailing system)
+7. Node.js and NPM
 
 Instructions for use.
 1. Rename the ".env.template" file to ".env"
