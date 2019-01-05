@@ -11,4 +11,8 @@ mkdir -p /var/log/msmtp/ && chmod 777 /var/log/msmtp/
 #php log dir
 mkdir -p /var/log/php/ && chmod 777 /var/log/php/
 
+#change container user permissions
+usermod -u $user_uid www-data
+groupmod -g $user_gid www-data
+
 exec docker-php-entrypoint "$@"

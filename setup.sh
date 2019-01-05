@@ -4,7 +4,8 @@
 #variables
 export REMOTE_HOST_IP="$(echo $(hostname -I) | cut -d ' ' -f 1)"
 export DEV_PATH="$(pwd)"
-
+export user_uid="$(id -u)"
+export user_gid="$(id -g)"
 
 sudo chmod -R gou+rwx ./logs
 docker-compose down
