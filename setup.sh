@@ -1,16 +1,8 @@
-!#/bin/bash
-#type in command line: . ./setup.sh
-
-#variables
-export REMOTE_HOST_IP="$(echo $(hostname -I) | cut -d ' ' -f 1)"
-export DEV_PATH="$(pwd)"
-export user_uid="$(id -u)"
-export user_gid="$(id -g)"
+#!/usr/bin/env bash
 
 sudo chmod -R gou+rwx ./logs
 docker-compose down
 docker-compose up -d --build
-
 
 #mysql installing
 while [ -z $(docker logs mysql 2>&1 | grep "mysqld: ready for connections") ]
