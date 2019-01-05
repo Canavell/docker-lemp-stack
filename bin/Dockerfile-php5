@@ -44,6 +44,10 @@ RUN mkdir -p /var/log/php/ && chmod 777 /var/log/php/
 
 RUN wget -S --header="accept-encoding: gzip" -O-  "https://browscap.org/stream?q=Full_PHP_BrowsCapINI" | gunzip > /browscap.ini
 
+#create user with the host permissions
+RUN usermod -u 1000 www-data
+RUN groupmod -g 1000 www-data
+
 COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
 RUN chmod +x /usr/local/bin/custom-start.sh
 

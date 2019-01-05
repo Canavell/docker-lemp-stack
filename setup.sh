@@ -5,11 +5,8 @@
 export REMOTE_HOST_IP="$(echo $(hostname -I) | cut -d ' ' -f 1)"
 export DEV_PATH="$(pwd)"
 
-
-sudo chmod -R gou+rwx .
 docker-compose down
 docker-compose up -d --build
-
 
 #mysql installing
 while [ -z $(docker logs mysql 2>&1 | grep "mysqld: ready for connections") ]
