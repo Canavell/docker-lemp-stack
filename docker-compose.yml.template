@@ -63,8 +63,6 @@ services:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
       - ./bin/config/mysql/my.cnf:/etc/my_original.cnf
-    env_file:
-      - ".env"
     environment:
       MYSQL_ROOT_PASSWORD: "YOUR_MYSQL_PASSWORD"
   nginx:
