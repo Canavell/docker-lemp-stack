@@ -12,6 +12,6 @@ echo "export DEV_PATH=\"$(pwd)\"" >> ~/$variablesList
 echo "export user_uid=\"$(id -u)\"" >> ~/$variablesList
 echo "export user_gid=\"$(id -g)\"" >> ~/$variablesList
 
-if ! grep -q "source ~/.dockerStackVariablesList" ~/.bashrc; then
-  echo "source ~/.dockerStackVariablesList" >> ~/.bashrc
+if ! grep -q "source ~/$variablesList" ~/.bashrc; then
+  echo "source ~/$variablesList" >> ~/.bashrc
 fi
