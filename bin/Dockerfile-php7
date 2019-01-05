@@ -36,12 +36,6 @@ RUN a2enmod rewrite headers
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-#create  msmtp logdir
-RUN mkdir -p /var/log/msmtp/ && chmod 777 /var/log/msmtp/
-
-#php log dir
-RUN mkdir -p /var/log/php/ && chmod 777 /var/log/php/
-
 #create user with the host permissions
 RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data

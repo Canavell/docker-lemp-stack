@@ -36,12 +36,6 @@ RUN a2enmod rewrite headers
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-#create  msmtp logdir
-RUN mkdir -p /var/log/msmtp/ && chmod 777 /var/log/msmtp/
-
-#php log dir
-RUN mkdir -p /var/log/php/ && chmod 777 /var/log/php/
-
 RUN wget -S --header="accept-encoding: gzip" -O-  "https://browscap.org/stream?q=Full_PHP_BrowsCapINI" | gunzip > /browscap.ini
 
 #create user with the host permissions
