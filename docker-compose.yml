@@ -55,7 +55,7 @@ services:
       context: ./bin
       dockerfile: Dockerfile-mysql
     restart: 'always'
-    networks:
+    networks: 
       - custom_docker_network
     ports:
       - "3306:3306"
