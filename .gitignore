@@ -13,6 +13,4 @@
 /bin/config/msmtp/*
 !/bin/config/msmtp/*.template
 
-.env
-!.env.template
 docker-compose.yml
