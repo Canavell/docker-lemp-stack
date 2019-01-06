@@ -2,7 +2,7 @@
 #variables
 variablesList=".dockerStackVariablesList"
 
-if [ -f $variablesList ] ; then
+if [ -f ~/$variablesList ] ; then
     rm ~/$variablesList
 fi
 touch ~/$variablesList
