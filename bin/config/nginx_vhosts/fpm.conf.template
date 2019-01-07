@@ -3,10 +3,10 @@ server {
     server_name fpm.localhost;
     root        /var/www/fpm;
 
-	location / {
-	    index index.php index.html index.htm;
-	    try_files $uri $uri/ =404;
-	}
+    location / {
+        index index.php index.html index.htm;
+        try_files $uri/ =404;
+    }
 
     location ~ \.php$ {
         fastcgi_pass php7-fpm:9000;
