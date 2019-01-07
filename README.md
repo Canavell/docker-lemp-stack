@@ -26,11 +26,10 @@ Instructions for use.
 12. In the /etc/hosts file enter (without quotes) two lines:
     "127.0.0.1 example.localhost" and 
     "127.0.0.1 fpm.localhost" 
-13. In the www folder, create a folder called "example"
-14. Finished, open one of the options in the browser:
+13. Finished, open one of the options in the browser:
 	http://example.localhost:7777/ (will open with php7.1, directly via Apache)
 	http://example.localhost:5555/ (opens with php5.6, directly through Apache)
 	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
 	http://fpm.localhost/ (opens with php7.1 through nginx and works as fpm)
-15. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
-16. If you are using PhpStorm, then you should create servers with name "myapp" in PhpStorm debug configurtaion. Also you need add path mapping in server configuration to "/var/www/example-project"
+14. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
+15. If you are using PhpStorm, then you should create servers with name "myapp" in PhpStorm debug configurtaion. Also you need add path mapping in server configuration to "/var/www/example-project"
