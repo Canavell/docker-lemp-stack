@@ -31,7 +31,7 @@ RUN docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install mcrypt
 
 # Enable apache modules
-RUN a2enmod rewrite headers
+RUN a2enmod rewrite expires deflate headers
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
