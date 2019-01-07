@@ -13,4 +13,7 @@
 /bin/config/msmtp/*
 !/bin/config/msmtp/*.template
 
+/bin/config/nginx_vhosts/*.conf
+!/bin/config/nginx_vhosts/*.template
+
 docker-compose.yml
