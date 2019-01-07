@@ -65,6 +65,25 @@ services:
       - ./bin/config/mysql/my.cnf:/etc/my_original.cnf
     environment:
       MYSQL_ROOT_PASSWORD: "YOUR_MYSQL_PASSWORD"
+  php7-fpm:
+    container_name: php7-fpm
+    build:
+      context: ./bin
+      dockerfile: Dockerfile-php7-fpm
+    restart: 'always'
+    networks:
+      - custom_docker_network
+    volumes:
+      - ./www:/var/www/
+      - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./logs/msmtp/:/var/log/msmtp/
+      - ./logs/php/:/var/log/php/
+      - ./bin/config/msmtp/.msmtp_php:/etc/.msmtp_php_original
+    environment:
+      XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
+      PHP_IDE_CONFIG: "serverName=myapp"
+      user_uid: "$user_uid"
+      user_gid: "$user_gid"
   nginx:
     container_name: nginx
     restart: 'always'
@@ -74,6 +93,7 @@ services:
       context: ./bin
       dockerfile: Dockerfile-nginx
     volumes:
+      - ./www:/var/www/
       - ./bin/config/nginx_vhosts/:/etc/nginx/conf.d/
       - ./logs/nginx/:/var/log/nginx/
     ports:
