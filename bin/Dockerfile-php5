@@ -36,8 +36,6 @@ RUN a2enmod rewrite expires deflate headers
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN wget -S --header="accept-encoding: gzip" -O-  "https://browscap.org/stream?q=Full_PHP_BrowsCapINI" | gunzip > /browscap.ini
-
 COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
 RUN chmod +x /usr/local/bin/custom-start.sh
 

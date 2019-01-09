@@ -29,9 +29,6 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
-#customize php-fpm listening port for correct xdebug work
-#RUN sed -i 's/9000/3001/' /usr/local/etc/php-fpm.d/zz-docker.conf
-
 #timezone
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
