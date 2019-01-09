@@ -23,8 +23,6 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
-      user_uid: "$user_uid"
-      user_gid: "$user_gid"
   php7:
     container_name: php7
     build:
@@ -47,8 +45,6 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
-      user_uid: "$user_uid"
-      user_gid: "$user_gid"
   mysql:
     container_name: mysql
     build:
@@ -82,8 +78,6 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
-      user_uid: "$user_uid"
-      user_gid: "$user_gid"
   nginx:
     container_name: nginx
     restart: 'always'
