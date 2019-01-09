@@ -6,6 +6,9 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-php5
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
     restart: 'always'
     ports:
       - "5555:80"
@@ -28,6 +31,9 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-php7
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
     restart: 'always'
     networks:
       - custom_docker_network
@@ -66,6 +72,9 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-php7-fpm
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
     restart: 'always'
     networks:
       - custom_docker_network

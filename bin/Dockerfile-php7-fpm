@@ -30,8 +30,10 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-install -j$(nproc) gd
 
 #change user permissions
-RUN usermod -u 1000 www-data
-RUN groupmod -g 1000 www-data
+ARG user_uid
+ARG user_gid
+RUN usermod -u $user_uid www-data
+RUN groupmod -g $user_gid www-data
 
 #timezone
 ENV TZ=Europe/Moscow

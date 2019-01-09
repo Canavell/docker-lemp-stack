@@ -34,8 +34,11 @@ RUN docker-php-ext-install pdo_mysql \
 RUN a2enmod rewrite expires deflate headers
 
 #change user permissions
-RUN usermod -u 1000 www-data
-RUN groupmod -g 1000 www-data
+ARG user_uid
+ARG user_gid
+RUN usermod -u $user_uid www-data
+RUN groupmod -g $user_gid www-data
+
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
