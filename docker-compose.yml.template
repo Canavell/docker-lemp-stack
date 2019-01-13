@@ -16,6 +16,7 @@ services:
       - custom_docker_network
     volumes:
       - ./www:/var/www/
+      - ./data/xdebug_profiler/:/var/xdebug_profiler/
       - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./bin/config/apache_vhosts/:/etc/apache2/sites-enabled
       - ./bin/config/apache_ports/ports.conf:/etc/apache2/ports.conf
@@ -41,6 +42,7 @@ services:
       - "7777:80" 
     volumes:
       - ./www:/var/www/
+      - ./data/xdebug_profiler/:/var/xdebug_profiler/
       - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./bin/config/apache_vhosts/:/etc/apache2/sites-enabled
       - ./logs/apache2:/var/log/apache2
@@ -80,6 +82,7 @@ services:
       - custom_docker_network
     volumes:
       - ./www:/var/www/
+      - ./data/xdebug_profiler/:/var/xdebug_profiler/
       - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./logs/msmtp/:/var/log/msmtp/
       - ./logs/php/:/var/log/php/
