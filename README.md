@@ -32,4 +32,4 @@ Instructions for use.
 	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
 	http://fpm.localhost/ (opens with php7.1 through nginx and works as fpm)
 14. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
-15. If you are using PhpStorm, then you should create servers with name "myapp" in PhpStorm debug configurtaion. Also you need add path mapping in server configuration to "/home"
+15. If you are using PhpStorm, then you should create two configurations, called "example-server" and "example-cli". Also you need create two servers in PhpStorm configuration with names "myapp" and "server". In "myapp" server you need add path mapping to "/home", in another server called "server" you need add path mapping to "/var/www/example". Then bind "example-server" with "server" and "example-cli" with "myapp". 
