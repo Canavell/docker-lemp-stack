@@ -12,8 +12,7 @@ do
     echo "We are waiting for mysql to be ready."
 done
 if docker logs mysql 2>&1 | grep -Fxq "Initializing database"; then
-  echo "We need to restart containers."
-  docker-compose restart mysql
+  echo "Mysql inited."
 fi
 
 

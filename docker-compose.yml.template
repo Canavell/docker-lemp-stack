@@ -69,7 +69,7 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
-      - ./bin/config/mysql/my.cnf:/etc/my_original.cnf
+      - ./bin/config/mysql:/etc/mysql/conf.d 
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
       MYSQL_DATABASE: "default_db"

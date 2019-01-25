@@ -4,7 +4,6 @@ init-connect='SET NAMES utf8'
 character-set-server = utf8
 max_allowed_packet = 128M
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
-
 log_timestamps = SYSTEM
 #slow query log
 slow_query_log=1
