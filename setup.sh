@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 sudo chmod -R gou+rwx ./logs
+sudo chmod -R gou+rwx ./data
 docker-compose down
 docker-compose up -d --build
 
@@ -12,7 +13,7 @@ do
 done
 if docker logs mysql 2>&1 | grep -Fxq "Initializing database"; then
   echo "We need to restart containers."
-  docker-compose restart
+  docker-compose restart mysql
 fi
 
 

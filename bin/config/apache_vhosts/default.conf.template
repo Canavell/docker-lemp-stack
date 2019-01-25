@@ -1,4 +1,4 @@
-<VirtualHost *:8080 *:80>
+<VirtualHost *:80>
     ServerName example.localhost
     DocumentRoot /var/www/example/
 	<Directory /var/www/example/>

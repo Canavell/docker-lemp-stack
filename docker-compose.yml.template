@@ -58,6 +58,9 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-mysql
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
     restart: 'always'
     networks:
       - custom_docker_network
@@ -68,7 +71,10 @@ services:
       - ./logs/mysql:/var/log/mysql
       - ./bin/config/mysql/my.cnf:/etc/my_original.cnf
     environment:
-      MYSQL_ROOT_PASSWORD: "YOUR_MYSQL_PASSWORD"
+      MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
+      MYSQL_DATABASE: "default_db"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "MYSQL_PASSWORD"
   php7-fpm:
     container_name: php7-fpm
     build:
@@ -106,11 +112,21 @@ services:
       - 80:80
       - 443:443
   composer: 
+    networks:
+      - custom_docker_network
     container_name: 'composer' 
     restart: 'no' 
     build:
       context: ./bin
       dockerfile: Dockerfile-composer
+  adminer:
+    networks:
+      - custom_docker_network
+    container_name: 'adminer' 
+    image: adminer
+    restart: always
+    ports:
+      - 9999:8080
 
 networks:
   custom_docker_network:
