@@ -119,14 +119,16 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-composer
-  adminer:
+  phpmyadmin:
     networks:
       - custom_docker_network
-    container_name: 'adminer' 
-    image: adminer
+    container_name: 'phpmyadmin' 
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 9999:8080
+      - 9999:80
+    environment:
+      PMA_HOST: "mysql"
 
 networks:
   custom_docker_network:
