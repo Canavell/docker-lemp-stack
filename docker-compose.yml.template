@@ -124,6 +124,8 @@ services:
       - custom_docker_network
     container_name: 'phpmyadmin' 
     image: phpmyadmin/phpmyadmin
+    volumes:
+      - ./bin/config/php/zzphp-phpmyadmin.ini:/usr/local/etc/php/conf.d/zzphp-phpmyadmin.ini
     restart: always
     ports:
       - 9999:80
