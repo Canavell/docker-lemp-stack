@@ -131,6 +131,16 @@ services:
       - 9999:80
     environment:
       PMA_HOST: "mysql"
+  adminer:
+    container_name: 'adminer' 
+    networks:
+      - custom_docker_network
+    image: adminer
+    volumes:
+      - ./bin/config/php/zzupload_large_dumps.ini:/usr/local/etc/php/conf.d/zzupload_large_dumps.ini
+    restart: always
+    ports:
+      - 8080:8080
 
 networks:
   custom_docker_network:
