@@ -73,8 +73,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
       MYSQL_DATABASE: "default_db"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "MYSQL_USER_PASSWORD"
   php7-fpm:
     container_name: php7-fpm
     build:
