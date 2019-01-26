@@ -35,6 +35,8 @@ ARG user_gid
 RUN usermod -u $user_uid www-data
 RUN groupmod -g $user_gid www-data
 
+RUN apt-get update && apt-get install -y procps
+
 #timezone
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
