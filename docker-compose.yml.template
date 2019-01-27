@@ -72,7 +72,7 @@ services:
       - ./bin/config/mysql:/etc/mysql/conf.d 
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
-      MYSQL_DATABASE: "default_db"
+      MYSQL_DATABASE: "maindb"
   php7-fpm:
     container_name: php7-fpm
     build:
