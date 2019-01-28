@@ -70,7 +70,6 @@ services:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
       - ./bin/config/mysql:/etc/mysql/conf.d 
-      - ./bin/entrypoints/mysql/ident.sql:/docker-entrypoint-initdb.d/ident.sql
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
       MYSQL_DATABASE: "maindb"

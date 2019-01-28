@@ -1,4 +1,4 @@
-FROM mysql:8
+FROM mysql:5.7
 
 ARG user_uid
 ARG user_gid
