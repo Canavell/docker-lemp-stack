@@ -17,3 +17,5 @@
 !/bin/config/nginx_vhosts/*.template
 
 docker-compose.yml
+
+/bin/entrypoints/mysql/ident.sql
