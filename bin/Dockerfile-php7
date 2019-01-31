@@ -42,6 +42,13 @@ RUN groupmod -g $user_gid www-data
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+#wkhtmltopdf
+RUN apt-get install -y wget 
+RUN wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb || true
+RUN apt-get -f install -y
+RUN rm -f wkhtmltox_0.12.5-1.stretch_amd64.deb
+
 COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
 RUN chmod +x /usr/local/bin/custom-start.sh
 
