@@ -1,0 +1,11 @@
+FROM mariadb:10.4.2
+
+ARG user_uid
+ARG user_gid
+RUN usermod -u $user_uid mysql
+RUN groupmod -g $user_gid mysql
+
+RUN apt-get update && apt-get install -y procps
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

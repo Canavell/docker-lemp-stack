@@ -53,6 +53,23 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./bin
+      dockerfile: Dockerfile-mariadb
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
+    restart: 'always'
+    networks:
+      - custom_docker_network
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+      - ./logs/mariadb:/var/log/mysql
+      - ./bin/config/mariadb:/etc/mariadb/conf.d 
   mysql:
     container_name: mysql
     build:
