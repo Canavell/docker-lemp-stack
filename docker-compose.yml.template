@@ -65,7 +65,7 @@ services:
     networks:
       - custom_docker_network
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./data/mariadb:/var/lib/mysql
       - ./logs/mariadb:/var/log/mysql

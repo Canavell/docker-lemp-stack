@@ -15,6 +15,16 @@ if docker logs mysql 2>&1 | grep -Fxq "Initializing database"; then
   echo "Mysql inited."
 fi
 
+#mariadb installing
+while [ -z $(docker logs mariadb 2>&1 | grep "mysqld: ready for connections") ]
+do
+    sleep 1
+    echo "We are waiting for mariadb to be ready."
+done
+if docker logs mariadb 2>&1 | grep -Fxq "Initializing database"; then
+  echo "Mariadb inited."
+fi
+
 
 
 #install local scripts
