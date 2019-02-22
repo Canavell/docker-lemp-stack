@@ -134,6 +134,8 @@ services:
     build:
       context: ./bin
       dockerfile: Dockerfile-composer
+    volumes:
+      - ./data/composer/:/.composer
   adminer:
     container_name: 'adminer' 
     networks:
