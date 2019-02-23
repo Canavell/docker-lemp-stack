@@ -8,7 +8,8 @@ Stack includes:
 7. MSMTP (mailing system)
 8. Node.js and NPM (as packages)
 9. Xdebug
-10.phpcs
+10. phpcs
+11. Adminer
 
 Also stack correctly works with PhpStorm out of the box.
 
