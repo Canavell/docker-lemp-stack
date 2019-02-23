@@ -1,7 +1,1 @@
-#!/bin/bash
-in=$(pwd)
-sep="$DEV_PATH/www/"
-subDir="${in//$sep/}"
-currentDir=${currentDir%%/*}
-
-docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $DEV_PATH/www/$currentDir:/var/www/$currentDir --user $(id -u):$(id -g) -w /var/www/$subDir composer composer "$@"
+docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/var/www/composer-path/ --user $(id -u):$(id -g) -w /var/www/composer-path/ composer composer "$@"
