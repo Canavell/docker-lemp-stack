@@ -1,1 +1,6 @@
-docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/home -w /home php5 php "$@"
+in=$(pwd)
+sep="$DEV_PATH/www/"
+subDir="${in//$sep/}"
+currentDir=${currentDir%%/*}
+
+docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $DEV_PATH/www/$currentDir:/var/www/$currentDir -w /var/www/$subDir php5 su -s /bin/bash -c "php $@" www-data
