@@ -6,8 +6,9 @@ Stack includes:
 5. MySQL
 6. Composer
 7. MSMTP (mailing system)
-8. Node.js and NPM
+8. Node.js and NPM (as packages)
 9. Xdebug
+10.phpcs
 
 Also stack correctly works with PhpStorm out of the box.
 
