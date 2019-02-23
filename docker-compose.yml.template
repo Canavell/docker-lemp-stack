@@ -27,6 +27,14 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
+  phpcs:
+    build:
+      context: ./bin
+      dockerfile: Dockerfile-phpcs
+    container_name: phpcs
+    tty: true
+    volumes:
+      - /tmp:/tmp
   php7:
     container_name: php7
     build:

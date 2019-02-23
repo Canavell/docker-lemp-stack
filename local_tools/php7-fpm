@@ -1,3 +1,4 @@
+#!/bin/bash
 in=$(pwd)
 sep="$DEV_PATH/www/"
 subDir="${in//$sep/}"
