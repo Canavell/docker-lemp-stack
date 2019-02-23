@@ -70,6 +70,9 @@ services:
       - ./data/mariadb:/var/lib/mysql
       - ./logs/mariadb:/var/log/mysql
       - ./bin/config/mariadb:/etc/mariadb/conf.d 
+    environment:
+      MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
+      MYSQL_DATABASE: "maindb"
   mysql:
     container_name: mysql
     build:
