@@ -33,6 +33,7 @@ services:
       dockerfile: Dockerfile-phpcs
     container_name: phpcs
     tty: true
+    restart: 'always'
     volumes:
       - /tmp:/tmp
   php7:
