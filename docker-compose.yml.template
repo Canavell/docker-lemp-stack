@@ -77,7 +77,7 @@ services:
     volumes:
       - ./data/mariadb:/var/lib/mysql
       - ./logs/mariadb:/var/log/mysql
-      - ./bin/config/mariadb:/etc/mariadb/conf.d 
+      - ./bin/config/mariadb:/etc/mysql/conf.d 
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
       MYSQL_DATABASE: "maindb"
