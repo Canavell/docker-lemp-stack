@@ -1,4 +1,4 @@
-FROM mariadb:10.3.12
+FROM mariadb:10.3.13
 
 ARG user_uid
 ARG user_gid
