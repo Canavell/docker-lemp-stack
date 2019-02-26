@@ -158,6 +158,18 @@ services:
     restart: always
     ports:
       - 8080:8080
+  phpmyadmin:
+    networks:
+      - custom_docker_network
+    container_name: 'phpmyadmin' 
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - ./bin/config/php/upload_large_dumps.ini:/usr/local/etc/php/conf.d/upload_large_dumps.ini
+    restart: always
+    ports:
+      - 9090:80
+    environment:
+      PMA_HOSTS: "mysql,mariadb"
 
 networks:
   custom_docker_network:
