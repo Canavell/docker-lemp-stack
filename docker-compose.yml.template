@@ -17,7 +17,7 @@ services:
     volumes:
       - ./www:/var/www/
       - ./data/xdebug_profiler/:/var/xdebug_profiler/
-      - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./bin/config/php/php.ini:/usr/local/etc/php/conf.d/custom-php.ini
       - ./bin/config/apache_vhosts/:/etc/apache2/sites-enabled
       - ./bin/config/apache_ports/ports.conf:/etc/apache2/ports.conf
       - ./logs/apache2:/var/log/apache2
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./www:/var/www/
       - ./data/xdebug_profiler/:/var/xdebug_profiler/
-      - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./bin/config/php/php.ini:/usr/local/etc/php/conf.d/custom-php.ini
       - ./bin/config/apache_vhosts/:/etc/apache2/sites-enabled
       - ./logs/apache2:/var/log/apache2
       - ./bin/config/apache_ports/ports.conf:/etc/apache2/ports.conf
@@ -116,7 +116,7 @@ services:
     volumes:
       - ./www:/var/www/
       - ./data/xdebug_profiler/:/var/xdebug_profiler/
-      - ./bin/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./bin/config/php/php.ini:/usr/local/etc/php/conf.d/custom-php.ini
       - ./logs/msmtp/:/var/log/msmtp/
       - ./logs/php/:/var/log/php/
       - ./bin/config/msmtp/.msmtp_php:/etc/.msmtp_php_original
