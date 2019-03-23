@@ -49,7 +49,7 @@ RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb || true
 RUN apt-get -f install -y
 RUN rm -f wkhtmltox_0.12.5-1.stretch_amd64.deb
 
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
 RUN chmod +x /usr/local/bin/custom-start.sh
