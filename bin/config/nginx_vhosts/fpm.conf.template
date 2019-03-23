@@ -8,7 +8,7 @@ server {
 
     index index.php index.html;
     server_name fpm.localhost;
-    root /var/www/fpm/public/;
+    root /var/www/fpm/;
 
     location ~ \.php$ {
         try_files $uri =404;
