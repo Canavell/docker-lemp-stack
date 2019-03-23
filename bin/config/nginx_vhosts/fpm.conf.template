@@ -4,6 +4,10 @@ server {
     server_name fpm.localhost;
     root /var/www/fpm/;
 
+    listen 443 ssl;
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
+
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;

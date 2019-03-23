@@ -2,3 +2,11 @@ FROM nginx:1.14.2
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN mkdir /etc/nginx/ssl
+RUN apt-get update && \
+    apt-get install -y openssl && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -subj "/C=NA/ST=LocalPlace/L=City/O=OrgName/OU=IT Department/CN=example.com" \
+        -keyout /etc/nginx/ssl/server.key \
+        -out /etc/nginx/ssl/server.crt
