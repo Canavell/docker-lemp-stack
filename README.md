@@ -35,3 +35,6 @@ Instructions for use.
 	http://fpm.localhost/ (opens with php7.1 through nginx and works as fpm)
 14. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
 15. If you are using PhpStorm, then you should create configuration called "example". Also you need create server in PhpStorm configuration called "myapp". In "myapp" server you need add path mapping to"/var/www/example".
+16. To generate self-signed SSL certificates in current directory: sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+-keyout ./server.key \
+-out ./server.crt

@@ -30,7 +30,7 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-install -j$(nproc) gd
 
 # Enable apache modules
-RUN a2enmod rewrite expires deflate headers
+RUN a2enmod rewrite expires deflate headers ssl
 
 #change user permissions
 ARG user_uid
@@ -50,6 +50,14 @@ RUN apt-get -f install -y
 RUN rm -f wkhtmltox_0.12.5-1.stretch_amd64.deb
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+RUN mkdir /etc/apache2/ssl/
+RUN apt-get update && \
+    apt-get install -y openssl && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -subj "/C=UK/ST=Warwickshire/L=Leamington/O=OrgName/OU=IT Department/CN=phplearning.localhost" \
+        -keyout /etc/apache2/ssl/server.key \
+        -out /etc/apache2/ssl/server.crt
 
 COPY ./entrypoints/php/custom-start.sh /usr/local/bin/custom-start.sh
 RUN chmod +x /usr/local/bin/custom-start.sh

@@ -12,6 +12,7 @@ services:
     restart: 'always'
     ports:
       - "5555:80"
+      - "5543:443" 
     networks:
       - custom_docker_network
     volumes:
@@ -49,6 +50,7 @@ services:
       - custom_docker_network
     ports:
       - "7777:80" 
+      - "7743:443" 
     volumes:
       - ./www:/var/www/
       - ./data/xdebug_profiler/:/var/xdebug_profiler/
