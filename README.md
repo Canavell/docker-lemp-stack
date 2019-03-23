@@ -34,7 +34,7 @@ Instructions for use.
 	https://example.localhost:7743/ (the same, but https version)
 	http://example.localhost:5555/ (opens with php5.6, directly through Apache)
 	https://example.localhost:5543/ (the same, but https version)
-	http://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
-	http://fpm.localhost/ (opens with php7.1 through nginx and works as fpm)
+	https://example.localhost/ (opens with php7.1, will work as reverse proxy through nginx)
+	https://fpm.localhost/ (opens with php7.1 through nginx and works as fpm)
 15. Now it works. You can use composer, php7, php5, mysql commands from command line. You need open terminal and type, e.g. "php7 -v", or "mysql -uroot -upassword" and it will works.
 16. If you are using PhpStorm, then you should create configuration called "example". Also you need create server in PhpStorm configuration called "myapp". In "myapp" server you need add path mapping to"/var/www/example".
