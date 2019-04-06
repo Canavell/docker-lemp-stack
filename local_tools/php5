@@ -3,9 +3,15 @@ initial="$(pwd)"
 separator="$DEV_PATH/www"
 pathAfterSeparator="${initial//$separator/}"
 
+C=''
+for i in "$@"; do 
+    i="${i//\\/\\\\}"
+    C="$C \"${i//\"/\\\"}\""
+done
+
 if [ -z "$pathAfterSeparator" ] || [ "$initial" = "$pathAfterSeparator" ]
 then
-	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/home -w /home php5 su -s /bin/bash -c "php $*" www-data
+	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/home -w /home php5 su -s /bin/bash -c "php $C" www-data
 else
-	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -w /var/www$pathAfterSeparator php5 su -s /bin/bash -c "php $*" www-data
+	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -w /var/www$pathAfterSeparator php5 su -s /bin/bash -c "php $C" www-data
 fi
