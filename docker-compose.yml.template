@@ -144,11 +144,16 @@ services:
     networks:
       - custom_docker_network
     container_name: 'composer' 
-    restart: 'no' 
+    restart: always
+    tty: true
     build:
       context: ./bin
       dockerfile: Dockerfile-composer
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
     volumes:
+      - ./www:/var/www/
       - ./data/composer/:/.composer
   adminer:
     container_name: 'adminer' 

@@ -1,1 +1,6 @@
-docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/var/www/composer-path/ --user $(id -u):$(id -g) -w /var/www/composer-path/ composer composer "$@"
+#!/bin/bash
+initial="$(pwd)"
+separator="$DEV_PATH/www"
+pathAfterSeparator="${initial//$separator/}"
+
+docker exec -ti -w /var/www$pathAfterSeparator composer composer "$@"
