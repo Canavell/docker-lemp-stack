@@ -9,4 +9,9 @@ for i in "$@"; do
     C="$C \"${i//\"/\\\"}\""
 done
 
-docker exec -ti -w /var/www$pathAfterSeparator php5 su -s /bin/bash -c "php $C" www-data
+if [ -z "$pathAfterSeparator" ] || [ "$initial" = "$pathAfterSeparator" ]
+then
+	docker exec -ti -w /var/www php5 su -s /bin/bash -c "php $C" www-data
+else
+	docker exec -ti -w /var/www$pathAfterSeparator php5 su -s /bin/bash -c "php $C" www-data
+fi
