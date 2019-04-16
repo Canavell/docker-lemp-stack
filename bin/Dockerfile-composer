@@ -16,3 +16,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 #change user permissions
 RUN mkdir /.composer && chmod 777 /.composer
+
+#change user permissions
+ARG user_uid
+ARG user_gid
+USER $user_uid:$user_gid
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]

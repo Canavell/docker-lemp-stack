@@ -11,7 +11,7 @@ done
 
 if [ -z "$pathAfterSeparator" ] || [ "$initial" = "$pathAfterSeparator" ]
 then
-	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -v $(pwd):/home -w /home php7-fpm su -s /bin/bash -c "php $C" www-data
+	docker exec -ti -w /var/www php7-fpm su -s /bin/bash -c "php $C" www-data
 else
-	docker-compose -f $DEV_PATH/docker-compose.yml run --rm -w /var/www$pathAfterSeparator php7-fpm su -s /bin/bash -c "php $C" www-data
+	docker exec -ti -w /var/www$pathAfterSeparator php7-fpm su -s /bin/bash -c "php $C" www-data
 fi
