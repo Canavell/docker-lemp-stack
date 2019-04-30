@@ -2,6 +2,7 @@
 
 #create  msmtp logdir
 mkdir -p /var/log/msmtp/ && chmod 777 /var/log/msmtp/
+touch /var/log/msmtp/msmtp.log && chmod 777 /var/log/msmtp/msmtp.log
 
 #php log dir
 mkdir -p /var/log/php/ && chmod 777 /var/log/php/

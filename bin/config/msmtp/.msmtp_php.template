@@ -1,4 +1,5 @@
 account gmail
+logfile /var/log/msmtp/msmtp.log
 host smtp.gmail.com
 port 587
 from your_account@gmail.com
@@ -12,6 +13,7 @@ keepbcc on
 
 
 account yandex
+logfile /var/log/msmtp/msmtp.log
 host smtp.yandex.ru
 port 587
 from your_accont@yandex.ru
