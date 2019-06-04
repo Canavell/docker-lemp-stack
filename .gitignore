@@ -19,3 +19,5 @@
 docker-compose.yml
 
 /bin/entrypoints/mysql/ident.sql
+
+.env

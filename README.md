@@ -15,7 +15,7 @@ Also stack correctly works with PhpStorm out of the box.
 
 Instructions for use.
 1. Rename the "docker-compose.yml.template" file to "docker-compose.yml"
-2. In the docker-compose.yml file replace string "YOUR_MYSQL_PASSWORD" to your actual MySQL password. It must be string like "my_password" or "my_strong_password".
+2. Rename the ".env_template" file to ".env". There is your mysql password in this file. Change string "your_pass" to your actual mysql password.
 3. In the bin/config/apache_vhosts folder, rename the file "default.conf.template" to "default.conf"
 4. In the bin/config/apache_vhosts folder, rename the file "default-ssl.conf.template" to "default-ssl.conf"
 5. In the bin/сonfig/apache_porst folder, rename the file "ports.conf.template" to "ports.conf"

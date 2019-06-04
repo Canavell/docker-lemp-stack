@@ -82,7 +82,7 @@ services:
       - ./logs/mariadb:/var/log/mysql
       - ./bin/config/mariadb:/etc/mysql/conf.d 
     environment:
-      MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: "maindb"
   mysql:
     container_name: mysql
@@ -102,7 +102,7 @@ services:
       - ./logs/mysql:/var/log/mysql
       - ./bin/config/mysql:/etc/mysql/conf.d 
     environment:
-      MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: "maindb"
   php7-fpm:
     container_name: php7-fpm
