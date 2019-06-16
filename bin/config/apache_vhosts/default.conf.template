@@ -1,9 +1,26 @@
 <VirtualHost *:80>
     ServerName example.localhost
     DocumentRoot /var/www/example/
-	<Directory /var/www/example/>
-		DirectoryIndex index.html index.php
-		Options Indexes FollowSymLinks MultiViews
+    <Directory /var/www/example/>
+        DirectoryIndex index.html index.php
+        Options Indexes FollowSymLinks MultiViews
         AllowOverride All
-	</Directory>
+    </Directory>
 </VirtualHost>
+
+<IfModule mod_ssl.c>
+    <VirtualHost *:443>
+        ServerName example.localhost
+        DocumentRoot /var/www/example/
+        
+        SSLEngine on
+        SSLCertificateFile      /etc/apache2/ssl/server.crt
+        SSLCertificateKeyFile  /etc/apache2/ssl/server.key
+
+        <Directory /var/www/example/>
+            DirectoryIndex index.html index.php
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+        </Directory>
+    </VirtualHost>
+</IfModule>
