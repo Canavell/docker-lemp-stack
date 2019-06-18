@@ -18,7 +18,7 @@ Instructions for use.
 2. Rename the ".env_template" file to ".env". There is your mysql password in this file. Change string "your_pass" to your actual mysql password.
 3. In the bin/config/apache_vhosts folder, rename the file "default.conf.template" to "default.conf"
 4. In the bin/сonfig/apache_porst folder, rename the file "ports.conf.template" to "ports.conf"
-5. In the bin/config/nginx_vhosts folder, rename the file "fpm.conf.template" to "fpm.conf". And after that in the same folder rename the file "default.conf.template" to "default.conf".
+5. In the bin/config/nginx_vhosts folder, rename the file "fpm.conf.template" to "fpm.conf". And after that in the same folder rename the file "default-php7-reverse-proxy.conf.template" to "default-php7-reverse-proxy.conf".
 6. In the bin/config/msmtp folder, rename the ".msmtp_php.template" file to the ".msmtp_php" file
 7. In the ".msmtp_php" file, replace the "your_password" field with your gmail account password, and the "your_account@gmail.com" field into the mailbox from which you are going to send letters
 8. Do the same manipulations as in step 6 for the Yandex mailbox
