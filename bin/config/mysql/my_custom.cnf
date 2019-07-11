@@ -12,3 +12,5 @@ slow_query_log=1
 long_query_time=1
 log_queries_not_using_indexes=1
 slow_query_log_file=/var/log/mysql/mysql-slow.log
+tmp_table_size=2G
+max_heap_table_size=2G
