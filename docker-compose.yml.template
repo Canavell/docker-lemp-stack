@@ -11,8 +11,8 @@ services:
         user_gid: "$user_gid"
     restart: 'always'
     ports:
-      - "5555:80"
-      - "5543:443" 
+      - 5555:80
+      - 5543:443
     networks:
       - custom_docker_network
     volumes:
@@ -49,8 +49,8 @@ services:
     networks:
       - custom_docker_network
     ports:
-      - "7777:80" 
-      - "7743:443" 
+      - 7777:80 
+      - 7743:443
     volumes:
       - ./www:/var/www/
       - ./data/xdebug_profiler/:/var/xdebug_profiler/
@@ -76,7 +76,7 @@ services:
     networks:
       - custom_docker_network
     ports:
-      - "3307:3306"
+      - 3307:3306
     volumes:
       - ./data/mariadb:/var/lib/mysql
       - ./logs/mariadb:/var/log/mysql
@@ -96,7 +96,7 @@ services:
     networks:
       - custom_docker_network
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
