@@ -1,0 +1,7 @@
+{
+    "require": {
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "^2.7",
+        "friendsofphp/php-cs-fixer": "^2.15"
+    }
+}
