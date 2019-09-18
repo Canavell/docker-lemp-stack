@@ -4,12 +4,8 @@ Stack includes:
 3. PHP7.1 (fpm)
 4. Nginx
 5. MySQL
-6. Composer
-7. MSMTP (mailing system)
-8. Node.js and NPM (as packages)
-9. Xdebug
-10. phpcs
-11. Adminer
+6. MSMTP (mailing system)
+7. Xdebug
 
 Also stack correctly works with PhpStorm out of the box.
 
