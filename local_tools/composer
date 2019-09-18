@@ -1,6 +1,0 @@
-#!/bin/bash
-initial="$(pwd)"
-separator="$DEV_PATH/www"
-pathAfterSeparator="${initial//$separator/}"
-
-docker exec -ti -w /var/www$pathAfterSeparator composer composer "$@"
