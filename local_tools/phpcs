@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -i phpcs phpcs "$@"
+docker exec -i phpcq php /usr/local/lib/php-code-quality/vendor/bin/phpcs "$@"

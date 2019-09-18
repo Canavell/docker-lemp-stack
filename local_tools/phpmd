@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -i phpcq php /usr/local/lib/php-code-quality/vendor/bin/phpmd "$@"
