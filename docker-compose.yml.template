@@ -28,14 +28,6 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
-  phpcq:
-    image: adamculp/php-code-quality
-    container_name: phpcq
-    tty: true
-    restart: 'always'
-    volumes:
-      - ./www:/var/www/
-      - /tmp:/tmp
   php7:
     container_name: php7
     build:
@@ -139,16 +131,6 @@ services:
     ports:
       - 80:80
       - 443:443
-  adminer:
-    container_name: 'adminer' 
-    networks:
-      - custom_docker_network
-    image: adminer
-    volumes:
-      - ./bin/config/php/upload_large_dumps.ini:/usr/local/etc/php/conf.d/upload_large_dumps.ini
-    restart: always
-    ports:
-      - 8080:8080
 
 networks:
   custom_docker_network:
