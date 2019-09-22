@@ -1,0 +1,9 @@
+FROM postgres:11
+
+ARG user_uid
+ARG user_gid
+RUN usermod -u $user_uid postgres
+RUN groupmod -g $user_gid postgres
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

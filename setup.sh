@@ -26,6 +26,15 @@ if docker logs mariadb 2>&1 | grep -Fxq "Initializing database"; then
 fi
 
 
+#postgres installing
+while [ -z $(docker logs postgres 2>&1 | grep "database system is ready to accept connections") ]
+do
+    sleep 1
+    echo "We are waiting for postgres to be ready."
+done
+if docker logs postgres 2>&1 | grep -Fxq "The database cluster will be initialized"; then
+  echo "Postgres inited."
+fi
 
 #install local scripts
 for filename in ./local_tools/*; do

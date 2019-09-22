@@ -55,6 +55,33 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
+  adminer:
+    container_name: adminer
+    image: adminer
+    networks:
+      - custom_docker_network
+    restart: always
+    ports:
+      - 8080:8080
+  postgres:
+    container_name: postgres
+    build:
+      context: ./bin
+      dockerfile: Dockerfile-postgres
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
+    restart: 'always'
+    networks:
+      - custom_docker_network
+    ports:
+      - 3308:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./logs/postgres:/var/log/postgres
+    environment:
+      POSTGRES_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      POSTGRES_DB: "maindb"
   mariadb:
     container_name: mariadb
     build:
