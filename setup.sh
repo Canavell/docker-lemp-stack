@@ -32,7 +32,7 @@ do
     sleep 1
     echo "We are waiting for postgres to be ready."
 done
-if docker logs postgres 2>&1 | grep -Fxq "The database cluster will be initialized"; then
+if docker logs postgres 2>&1 | grep -Fxq "PostgreSQL init process complete"; then
   echo "Postgres inited."
 fi
 
