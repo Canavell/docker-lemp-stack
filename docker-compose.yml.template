@@ -1,6 +1,18 @@
 version: "3.7"
 
 services:
+  node:
+    container_name: node
+    image: node:10
+    restart: 'always'
+    stdin_open: true
+    tty: true
+    networks:
+      - custom_docker_network
+    ports:
+      - 3000:3000 
+    volumes:
+      - ~/WebstormProjects:/usr/src/app
   php5:
     container_name: php5
     build:
