@@ -6,6 +6,10 @@ Stack includes:
 5. MySQL
 6. MSMTP (mailing system)
 7. Xdebug
+8. Aminer
+9. PostgreSQL
+10. MongoDB
+11. MongoExpress
 
 Also stack correctly works with PhpStorm out of the box.
 
