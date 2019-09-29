@@ -36,6 +36,18 @@ if docker logs postgres 2>&1 | grep -Fxq "PostgreSQL init process complete"; the
   echo "Postgres inited."
 fi
 
+#mongodb installing
+while [ -z $(docker logs mongodb 2>&1 | grep "Listening on 0.0.0.0") ]
+do
+    sleep 1
+    echo "We are waiting for mongodb to be ready."
+done
+if docker logs mongodb 2>&1 | grep -Fxq "MongoDB init process complete; ready for start up."; then
+  echo "mongodb inited."
+fi
+
+
+
 #install local scripts
 for filename in ./local_tools/*; do
     yes | sudo cp -rf $filename /usr/local/bin/

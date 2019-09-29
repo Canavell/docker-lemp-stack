@@ -13,6 +13,26 @@ services:
       - 3000:3000 
     volumes:
       - ~/WebstormProjects:/usr/src/app
+  mongodb:
+    container_name: mongodb
+    build:
+      context: ./bin
+      dockerfile: Dockerfile-mongo
+      args:
+        user_uid: "$user_uid"
+        user_gid: "$user_gid"
+    restart: 'always'
+    networks:
+      - custom_docker_network
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db
+      - ./logs/mongo:/var/log/mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: "maindb"
   php5:
     container_name: php5
     build:

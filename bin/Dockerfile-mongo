@@ -1,0 +1,9 @@
+FROM mongo:4.2
+
+ARG user_uid
+ARG user_gid
+RUN usermod -u $user_uid mongodb
+RUN groupmod -g $user_gid mongodb
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
