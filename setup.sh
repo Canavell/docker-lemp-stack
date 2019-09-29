@@ -36,14 +36,14 @@ if docker logs postgres 2>&1 | grep -Fxq "PostgreSQL init process complete"; the
   echo "Postgres inited."
 fi
 
-#mongodb installing
-while [ -z $(docker logs mongodb 2>&1 | grep "Listening on 0.0.0.0") ]
+#mongo installing
+while [ -z $(docker logs mongo 2>&1 | grep "Listening on 0.0.0.0") ]
 do
     sleep 1
-    echo "We are waiting for mongodb to be ready."
+    echo "We are waiting for mongo to be ready."
 done
-if docker logs mongodb 2>&1 | grep -Fxq "MongoDB init process complete; ready for start up."; then
-  echo "mongodb inited."
+if docker logs mongo 2>&1 | grep -Fxq "MongoDB init process complete; ready for start up."; then
+  echo "mongo inited."
 fi
 
 
