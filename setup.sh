@@ -46,12 +46,7 @@ if docker logs mongo 2>&1 | grep -Fxq "MongoDB init process complete; ready for 
   echo "mongo inited."
 fi
 
-
-
 #install local scripts
 for filename in ./local_tools/*; do
-    yes | sudo cp -rf $filename /usr/local/bin/
-    sudo chmod +x /usr/local/bin/$(basename "$filename")
+    sudo chmod +x $filename
 done
-
-echo "Done"
