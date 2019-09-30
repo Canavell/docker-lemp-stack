@@ -1,4 +1,4 @@
 docker exec -it php7 /bin/bash -c "mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini_temp_disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && exit"
 docker exec -it php5 /bin/bash -c "mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini_temp_disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && exit"
 docker exec -it php7-fpm /bin/bash -c "mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini_temp_disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && exit"
-docker-compose restart php7 php5
+docker-compose restart php7 php5 php7-fpm
