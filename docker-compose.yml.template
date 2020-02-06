@@ -129,6 +129,40 @@ services:
       POSTGRES_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       POSTGRES_DB: "maindb"
       PGDATA: /var/lib/postgresql/data/pgdata
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./bin/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: 
+      - --config.file=/etc/prometheus/prometheus.yml
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    container_name: mysql-exporter
+    restart: 'always'
+    environment:
+    - DATA_SOURCE_NAME=${MYSQL_USER_EXPORTER}:${MYSQL_PASSWORD_EXPORTER}@(mysql:3306)/
+    - collect.info_schema.tablestats=true
+    - collect.info_schema.userstats=true
+    - collect.info_schema.query_response_time=true
+    - collect.auto_increment.columns=true
+    - collect.binlog_size=true
+    - collect.perf_schema.eventsstatements=true
+    - collect.perf_schema.eventswaits=true
+    - collect.perf_schema.file_events=true
+    - collect.perf_schema.indexiowaits=true
+    - collect.perf_schema.tableiowaits=true
+    - collect.perf_schema.tablelocks=true
+    ports:
+      - 9104:9104
+    networks:
+      - custom_docker_network
+    logging:
+        driver: "json-file"
+        options:
+          max-size: "5m"
   mariadb:
     container_name: mariadb
     build:
