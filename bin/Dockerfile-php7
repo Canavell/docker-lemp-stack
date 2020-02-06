@@ -4,7 +4,7 @@ RUN apt-get -y update --fix-missing
 RUN apt-get upgrade -y
 
 # Install important libraries
-RUN apt-get -y install --fix-missing apt-utils build-essential curl zip libsqlite3-dev libsqlite3-0 mariadb-client libbz2-dev zlib1g-dev libicu-dev libfreetype6-dev libjpeg62-turbo-dev msmtp ca-certificates libmcrypt-dev libpng-dev libmemcached-dev
+RUN apt-get -y install --fix-missing apt-utils build-essential curl zip libsqlite3-dev libsqlite3-0 mysql-client libbz2-dev zlib1g-dev libicu-dev libfreetype6-dev libjpeg62-turbo-dev msmtp ca-certificates libmcrypt-dev libpng-dev libmemcached-dev
 
 # Install xdebug
 RUN pecl install redis-4.0.1 \
