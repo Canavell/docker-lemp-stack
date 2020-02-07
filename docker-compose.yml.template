@@ -128,7 +128,7 @@ services:
       - ./bin/config/php/upload_large_dumps.ini:/usr/local/etc/php/conf.d/upload_large_dumps.ini
     restart: always
     ports:
-      - 8080:8080
+      - 8082:8080
   postgres:
     container_name: postgres
     build:
@@ -149,34 +149,14 @@ services:
       POSTGRES_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       POSTGRES_DB: "maindb"
       PGDATA: /var/lib/postgresql/data/pgdata
-  grafana:
-    container_name: grafana
-    image: grafana/grafana
-    ports:
-      - 3000:3000
-    networks:
-      - custom_docker_network
-    restart: always
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    ports:
-      - 9090:9090
-    networks:
-      - custom_docker_network
-    volumes:
-      - ./bin/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
   mysql-exporter:
     image: prom/mysqld-exporter
     container_name: mysql-exporter
     restart: 'always'
+    networks:
+      - custom_docker_network
     environment:
-    - DATA_SOURCE_NAME=${MYSQL_USER_EXPORTER}:${MYSQL_PASSWORD_EXPORTER}@(mariadb:3306)/
+    - DATA_SOURCE_NAME=${MYSQL_USER_EXPORTER}:${MYSQL_PASSWORD_EXPORTER}@(mysql:3306)/
     - collect.info_schema.tablestats=true
     - collect.info_schema.userstats=true
     - collect.info_schema.query_response_time=true
@@ -191,12 +171,76 @@ services:
     - collect.perf_schema.tablelocks=true
     ports:
       - 9104:9104
-    networks:
-      - custom_docker_network
     logging:
         driver: "json-file"
         options:
           max-size: "5m"
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ./data/grafana/:/var/lib/grafana
+      - ./bin/config/grafana/provisioning/:/etc/grafana/provisioning/
+    networks:
+      - custom_docker_network
+    restart: always
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    networks:
+      - custom_docker_network
+    volumes:
+      - ./bin/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus/:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./data/alertmanager/:/etc/alertmanager/
+    networks:
+      - custom_docker_network
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+  cadvisor:
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8080:8080
+    networks:
+      - custom_docker_network
+    restart: always
+  node-exporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    ports:
+      - 9100:9100
+    networks:
+      - custom_docker_network
+    restart: always
   mysql:
     container_name: mysql
     build:
