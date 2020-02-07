@@ -175,6 +175,32 @@ services:
         driver: "json-file"
         options:
           max-size: "5m"
+  mariadb-exporter:
+    image: prom/mysqld-exporter
+    container_name: mariadb-exporter
+    restart: 'always'
+    networks:
+      - custom_docker_network
+    environment:
+    - DATA_SOURCE_NAME=${MYSQL_USER_EXPORTER}:${MYSQL_PASSWORD_EXPORTER}@(mariadb:3306)/
+    - collect.info_schema.tablestats=true
+    - collect.info_schema.userstats=true
+    - collect.info_schema.query_response_time=true
+    - collect.auto_increment.columns=true
+    - collect.binlog_size=true
+    - collect.engine_tokudb_status=true
+    - collect.perf_schema.eventsstatements=true
+    - collect.perf_schema.eventswaits=true
+    - collect.perf_schema.file_events=true
+    - collect.perf_schema.indexiowaits=true
+    - collect.perf_schema.tableiowaits=true
+    - collect.perf_schema.tablelocks=true
+    ports:
+      - 9105:9104
+    logging:
+        driver: "json-file"
+        options:
+          max-size: "5m"
   grafana:
     container_name: grafana
     image: grafana/grafana
