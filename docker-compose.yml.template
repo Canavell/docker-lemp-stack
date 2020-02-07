@@ -178,8 +178,6 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana
-    depends_on:
-      - prometheus
     ports:
       - 3000:3000
     volumes:
@@ -191,11 +189,6 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
-    depends_on:
-      - cadvisor
-    links:
-      - cadvisor:cadvisor
-      - alertmanager:alertmanager
     ports:
       - 9090:9090
     networks:
@@ -289,6 +282,7 @@ services:
       - ./logs/msmtp/:/var/log/msmtp/
       - ./logs/php/:/var/log/php/
       - ./bin/config/msmtp/.msmtp_php:/etc/.msmtp_php_original
+      - /media/Data/e/:/e/
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
@@ -304,9 +298,11 @@ services:
       - ./www:/var/www/
       - ./bin/config/nginx_vhosts/:/etc/nginx/conf.d/
       - ./logs/nginx/:/var/log/nginx/
+      - /media/Data/e/:/e/
     ports:
       - 80:80
       - 443:443
+      - 553:553
 
 networks:
   custom_docker_network:
