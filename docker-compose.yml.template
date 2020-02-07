@@ -220,7 +220,7 @@ services:
     networks:
       - custom_docker_network
     volumes:
-      - ./bin/config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./bin/config/prometheus/:/etc/prometheus/
       - ./data/prometheus/:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -233,7 +233,7 @@ services:
     ports:
       - 9093:9093
     volumes:
-      - ./data/alertmanager/:/etc/alertmanager/
+      - ./bin/config/alertmanager/:/etc/alertmanager/
     networks:
       - custom_docker_network
     restart: always
@@ -308,7 +308,6 @@ services:
       - ./logs/msmtp/:/var/log/msmtp/
       - ./logs/php/:/var/log/php/
       - ./bin/config/msmtp/.msmtp_php:/etc/.msmtp_php_original
-      - /media/Data/e/:/e/
     environment:
       XDEBUG_CONFIG: "remote_host=$REMOTE_HOST_IP"
       PHP_IDE_CONFIG: "serverName=myapp"
@@ -324,11 +323,9 @@ services:
       - ./www:/var/www/
       - ./bin/config/nginx_vhosts/:/etc/nginx/conf.d/
       - ./logs/nginx/:/var/log/nginx/
-      - /media/Data/e/:/e/
     ports:
       - 80:80
       - 443:443
-      - 553:553
 
 networks:
   custom_docker_network:
