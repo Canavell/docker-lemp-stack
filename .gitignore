@@ -21,3 +21,6 @@ docker-compose.yml
 /bin/entrypoints/mysql/ident.sql
 
 .env
+
+/bin/config/grafana/grafana_custom.ini
+!/bin/config/grafana/grafana_custom.ini.template

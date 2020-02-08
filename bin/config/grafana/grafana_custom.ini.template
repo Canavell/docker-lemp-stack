@@ -1,0 +1,9 @@
+[smtp]
+enabled = true
+host = smtp.gmail.com:587
+user = user@gmail.com
+# If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
+password = """#pas1swOrd;"""
+from_address = user@gmail.com
+from_name = Grafana
+skip_verify = true

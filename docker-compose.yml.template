@@ -209,6 +209,10 @@ services:
     volumes:
       - ./data/grafana/:/var/lib/grafana
       - ./bin/config/grafana/provisioning/:/etc/grafana/provisioning/
+      - ./bin/config/grafana/grafana_custom.ini/:/etc/grafana/grafana_custom.ini
+    environment:
+      - GF_PATHS_CONFIG=/etc/grafana/grafana_custom.ini
+      - GF_SMTP_ENABLED=true
     networks:
       - custom_docker_network
     restart: always
