@@ -5,6 +5,7 @@ receivers:
   - name: 'email-me'
     email_configs:
     - to: "user@gmail.com"
+      send_resolved: true
       from: user@gmail.com
       smarthost: smtp.gmail.com:587
       auth_username: "user@gmail.com"
