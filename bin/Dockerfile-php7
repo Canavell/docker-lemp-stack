@@ -1,5 +1,6 @@
 FROM php:7.1-apache
 
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get -y update --fix-missing
 RUN apt-get upgrade -y
 
