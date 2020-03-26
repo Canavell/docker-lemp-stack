@@ -9,12 +9,6 @@ server {
     server_name zend-expressive.localhost;
     root /var/www/zend-expressive/public/;
 
-    location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-        access_log off;
-        expires max;
-        log_not_found off;
-    }
-
     location / {
         try_files $uri $uri/ /index.php?$query_string;
     }
